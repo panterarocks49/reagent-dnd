@@ -1,0 +1,36 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/clj" "src/cljs"]
+
+ :dependencies
+ [[org.clojure/clojure "1.9.0-alpha16"]
+  [org.clojure/clojurescript "1.10.238"]
+  [org.clojure/spec.alpha "0.1.108"]
+  ;; [devcards "0.2.1"]
+  ;; [re-frame "0.4.1"]
+  ;; [reagent "0.5.1"]
+  [reagent "0.8.0"]
+  [secretary "1.2.3"]
+  ;; [cljsjs/react-dnd "2.0.2-0"]
+  ;; [cljsjs/highlight "8.4-0"]
+  ;; [cljsjs/react-dnd-html5-backend "2.0.0-0"]
+  ;; [medley "0.7.0"]
+  ;; [markdown-clj "0.9.82"]
+  ]
+
+ :builds
+ {:app {:target     :browser
+        :output-dir "resources/public/js/compiled"
+        :asset-path "/js/compiled"
+
+        :modules
+        {:main
+         {:entries [relemma.core]}}
+
+        :devtools
+        {:autoload true
+         :before-load  relemma.core/destroy
+         :after-load   relemma.core/reload
+         :http-handler shadow.http.push-state/handle
+         :http-root    "resources/public"
+         :http-port    2449}}}}
