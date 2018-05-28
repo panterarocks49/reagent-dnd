@@ -1,21 +1,19 @@
 (ns reagent-dnd.react-dnd
-  (:require [reagent.core :as r]
-            [cljsjs.react-dnd]
-            [cljsjs.react-dnd-html5-backend]))
+  (:require
+   [reagent.core :as r]
+   ["react-dnd" :as react-dnd]
+   ;; ["react-dnd-html5-backend" :as html5-backend]
+   ))
 
-(def drag-drop-context
-  (.-DragDropContext js/ReactDnD))
+(def drag-drop-context react-dnd/DragDropContext)
 
-(def drag-layer
-  (.-DragLayer js/ReactDnD))
+(def drag-layer react-dnd/DragLayer)
 
-(def drag-source
-  (.-DragSource js/ReactDnD))
+(def drag-source react-dnd/DragSource)
 
-(def drop-target
-  (.-DropTarget js/ReactDnD))
+(def drop-target react-dnd/DropTarget)
 
-(def html5-backend js/ReactDnDHTML5Backend)
+;; (def html5-backend html5-backend)
 
 (def get-empty-image (.getEmptyImage html5-backend))
 

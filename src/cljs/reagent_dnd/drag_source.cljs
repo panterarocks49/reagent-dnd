@@ -4,8 +4,7 @@
             [reagent-dnd.validate :refer [string-or-hiccup?]]
             [reagent-dnd.util :as util]
             [reagent-dnd.monitor :as monitor]
-            [reagent-dnd.connect :as connect])
-  (:require-macros [reagent-dnd.validate :refer [validate-args-macro]]))
+            [reagent-dnd.connect :as connect]))
 
 (def args-desc
   [{:name :child
@@ -79,7 +78,6 @@ itself"}])
 (defn component
   [& {:keys [child type state begin-drag dragging? end-drag can-drag? drag-preview]
       :as args}]
-  {:pre [(validate-args-macro args-desc args "drag-source")]}
   (let [options (options (select-keys args [:begin-drag
                                             :dragging?
                                             :end-drag
@@ -112,4 +110,4 @@ itself"}])
                                           (monitor/props->cljscon)
                                           (aget "connect-drag-source"))]
               (connect-drag-source
-               (r/as-element child))))}))))]))
+               (r/as-element [:div child]))))}))))]))

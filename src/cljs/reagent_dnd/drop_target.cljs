@@ -4,8 +4,7 @@
             [reagent-dnd.validate :refer [string-or-hiccup?]]
             [reagent-dnd.util :as util]
             [reagent-dnd.monitor :as monitor]
-            [reagent-dnd.connect :as connect])
-  (:require-macros [reagent-dnd.validate :refer [validate-args-macro]]))
+            [reagent-dnd.connect :as connect]))
 
 (def args-desc
   [{:name :child
@@ -59,7 +58,6 @@
 (defn component
   [& {:as args
       :keys [child types drop state can-drop?]}]
-  {:pre [(validate-args-macro args-desc args "drop-target")]}
   (let [wrapper (react-dnd/drop-target
                  (make-types types)
                  (options args)
@@ -78,4 +76,4 @@
                                           (monitor/props->cljscon)
                                           (aget "connect-drop-target"))]
               (connect-drop-target
-               (r/as-element child))))}))))]))
+               (r/as-element [:div child]))))}))))]))
